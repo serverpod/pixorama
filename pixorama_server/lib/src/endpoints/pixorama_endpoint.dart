@@ -22,7 +22,6 @@ final _pixelData = Uint8List(_numPixels)
 
 class PixoramaEndpoint extends Endpoint {
   static void _setPixel(int colorIndex, int pixelIndex) {
-    print('Setting pixel color: $colorIndex pixel: $pixelIndex');
     _pixelData[pixelIndex] = colorIndex;
   }
 
@@ -38,7 +37,6 @@ class PixoramaEndpoint extends Endpoint {
     );
 
     session.messages.addListener(_channelPixelAdded, (update) {
-      print('Listened to message. :D');
       sendStreamMessage(session, update);
     });
   }
@@ -49,7 +47,6 @@ class PixoramaEndpoint extends Endpoint {
     SerializableEntity message,
   ) async {
     if (message is ImageUpdate) {
-      print('Got image update');
       // Check that the message data is valid.
       assert(
         message.colorIndex >= 0 && message.colorIndex < _numColorsInPalette,
