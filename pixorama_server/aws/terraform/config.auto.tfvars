@@ -25,10 +25,10 @@ enable_redis = false
 # *.example.com to your certificate. You will need to create one certificate
 # for your main region and one for use with Cloudfront that resides in the
 # us-east-1 region.
-hosted_zone_id             = "<YOUR HOSTED ZONE ID>"
-top_domain                 = "<YOUR DOMAIN NAME>"
-certificate_arn            = "<YOUR CERTIFICATE ARN>"
-cloudfront_certificate_arn = "<YOUR CERTIFICATE ARN IN US-EAST-1>"
+hosted_zone_id             = "Z07039491J0D08NIC9A8"
+top_domain                 = "pixorama.live"
+certificate_arn            = "arn:aws:acm:us-west-2:271091916410:certificate/b3eb6c8e-1fa0-4f88-a669-6c78390e2da4"
+cloudfront_certificate_arn = "arn:aws:acm:us-east-1:271091916410:certificate/5c5ff619-7d50-41dc-9ad4-fc9c051c86c0"
 
 # Subdomains for different services. Default values are recommended, but you
 # may want to change the subdomain_web to www if you are using the top domain
