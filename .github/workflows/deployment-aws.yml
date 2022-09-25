@@ -29,6 +29,11 @@ jobs:
           channel: stable
           version: 3.3.2
 
+      - name: Compile Flutter web app
+        shell: bash
+        run: |
+          scripts/build_web
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:

@@ -23,10 +23,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  pixels:
-    path: ../../pixels
+  pixels: ^1.0.1
   pixorama_client:
     path: ../pixorama_client
+  url_strategy: ^0.2.0
 
 
   # The following adds the Cupertino Icons font to your application.

@@ -9,7 +9,7 @@ flutter build web --release
 cd ..
 
 # Copy the build files into the web/app diretory.
-rm -rf pixorama_server/web/build
+rm -rf pixorama_server/web/app
 cp -r pixorama_flutter/build/web pixorama_server/web/app
 
 # Move the index.html file into the templates directory.
