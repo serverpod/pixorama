@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Makes sure we break the script on any error.
+set -e
+
+# Build the web app.
+cd pixorama_flutter
+flutter build web --release
+cd ..
+
+# Copy the build files into the web/app diretory.
+rm -rf pixorama_server/web/build
+cp -r pixorama_flutter/build/web pixorama_server/web/app
+
+# Move the index.html file into the templates directory.
+mv pixorama_server/web/app/index.html pixorama_server/web/templates/index.html
