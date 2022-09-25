@@ -2,7 +2,8 @@ import 'package:pixorama_client/pixorama_client.dart';
 import 'package:flutter/material.dart';
 import 'package:pixorama_flutter/src/pixorama/pixorama.dart';
 
-var client = Client('http://localhost:8080/');
+var client = Client('https://api.pixorama.live/');
+// var client = Client('http://localhost:8080/');
 
 void main() {
   runApp(const PixoramaApp());
