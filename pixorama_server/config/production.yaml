@@ -21,7 +21,7 @@ insightsServer:
 # Configuration for the web server.
 webServer:
   port: 8082
-  publicHost: app.pixorama.live
+  publicHost: pixorama.live
   publicPort: 443
   publicScheme: https
 

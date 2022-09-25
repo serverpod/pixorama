@@ -37,18 +37,18 @@ subdomain_database         = "database"
 subdomain_redis            = "redis"
 subdomain_api              = "api"
 subdomain_insights         = "insights"
-subdomain_web              = "app"
+subdomain_web              = "www"
 subdomain_storage          = "storage"
 subdomain_api_staging      = "api-staging"
 subdomain_insights_staging = "insights-staging"
 subdomain_web_staging      = "app-staging"
 
 # Set to true if you want to use the top domain for the web server.
-use_top_domain_for_web = false
+use_top_domain_for_web = true
 
 # The definition of the server instances to deploy. Note that if you change the
 # region, you will have to change the AMI as they are bound to specific regions.
-# Serverpod is tested with Amazon Linux 2 Kernel 5.x (You can find the AMI ids 
+# Serverpod is tested with Amazon Linux 2 Kernel 5.x (You can find the AMI ids
 # for a specifc region under EC2 > AMI Catalog in your AWS console.)
 instance_type                = "t2.micro"
 instance_ami                 = "ami-0ca285d4c2cda3300"
