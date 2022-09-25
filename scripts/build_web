@@ -13,4 +13,5 @@ rm -rf pixorama_server/web/app
 cp -r pixorama_flutter/build/web pixorama_server/web/app
 
 # Move the index.html file into the templates directory.
+mkdir -p pixorama_server/web/templates
 mv pixorama_server/web/app/index.html pixorama_server/web/templates/index.html
