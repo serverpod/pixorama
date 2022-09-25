@@ -5,7 +5,7 @@ set -e
 
 # Build the web app.
 cd pixorama_flutter
-flutter build web --release
+flutter build web --release --web-renderer canvaskit
 cd ..
 
 # Copy the build files into the web/app diretory.
