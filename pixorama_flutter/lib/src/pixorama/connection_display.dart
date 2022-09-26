@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pixorama_client/pixorama_client.dart';
 
+/// Shows the connection state of a streaming connection.
 class ConnectionDisplay extends StatelessWidget {
   final Widget child;
   final StreamingConnectionHandlerState connectionState;

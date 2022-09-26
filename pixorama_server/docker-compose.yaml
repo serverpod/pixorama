@@ -8,14 +8,14 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_DB: pixorama
-      POSTGRES_PASSWORD: "Xa1BgTGnYwVVfnCl2GdFS3TijgnXJELa"
+      POSTGRES_PASSWORD: "PASSWORD"
     volumes:
       - pixorama_data:/var/lib/postgresql/data
   redis:
     image: redis:6.2.6
     ports:
       - '8091:6379'
-    command: redis-server --requirepass "qHfuso2yzOQ-ScLbhgSbJ69XuD-z5hXc"
+    command: redis-server --requirepass "PASSWORD"
     environment:
       - REDIS_REPLICATION_MODE=master
 volumes:

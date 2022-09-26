@@ -1,3 +1,5 @@
+# This class contains a full image and is sent from the server to the app.
+# The pixels is a byte array where each byte represents a pixel.
 class: ImageData
 fields:
   pixels: ByteData

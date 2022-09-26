@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:pixorama_flutter/src/pixorama/pixorama.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+// Change this to use the live server or to connect to a local server.
 var client = Client('https://api.pixorama.live/');
 // var client = Client('http://localhost:8080/');
 
 void main() {
+  // Hide that pesky /#/ in the URL for web app.
   setPathUrlStrategy();
   runApp(const PixoramaApp());
 }
