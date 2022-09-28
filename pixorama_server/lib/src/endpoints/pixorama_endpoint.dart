@@ -1,8 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:pixorama_server/src/generated/protocol.dart';
-import 'package:serverpod/server.dart';
-import 'package:serverpod_serialization/serverpod_serialization.dart';
+import 'package:serverpod/serverpod.dart';
 
 // The dimensions of the image, number of colors and default background color.
 const _imageWidth = 64;
