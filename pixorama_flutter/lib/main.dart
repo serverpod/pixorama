@@ -1,3 +1,4 @@
+import 'package:made_with_serverpod/made_with_serverpod.dart';
 import 'package:pixorama_client/pixorama_client.dart';
 import 'package:flutter/material.dart';
 import 'package:pixorama_flutter/src/pixorama/pixorama.dart';
@@ -26,7 +27,12 @@ class PixoramaApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Pixorama(),
+      home: Scaffold(
+        body: MadeWithServerpod(
+          url: Uri.parse('https://github.com/serverpod/pixorama'),
+          child: const Pixorama(),
+        ),
+      ),
     );
   }
 }

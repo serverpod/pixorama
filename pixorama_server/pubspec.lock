@@ -140,35 +140,35 @@ packages:
       name: serverpod
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.16"
+    version: "0.9.17"
   serverpod_client:
     dependency: transitive
     description:
       name: serverpod_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.16"
+    version: "0.9.17"
   serverpod_serialization:
     dependency: transitive
     description:
       name: serverpod_serialization
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.16"
+    version: "0.9.17"
   serverpod_service_client:
     dependency: transitive
     description:
       name: serverpod_service_client
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.16"
+    version: "0.9.17"
   serverpod_shared:
     dependency: transitive
     description:
       name: serverpod_shared
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.16"
+    version: "0.9.17"
   source_span:
     dependency: transitive
     description:

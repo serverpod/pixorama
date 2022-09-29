@@ -23,10 +23,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  made_with_serverpod: ^1.0.0
   pixels: ^1.0.1
   pixorama_client:
     path: ../pixorama_client
-  serverpod_flutter: ^0.9.16
+  serverpod_flutter: ^0.9.17
   url_strategy: ^0.2.0
 
 

@@ -13,10 +13,10 @@ class Pixorama extends StatefulWidget {
   });
 
   @override
-  _PixoramaState createState() => _PixoramaState();
+  PixoramaState createState() => PixoramaState();
 }
 
-class _PixoramaState extends State<Pixorama> {
+class PixoramaState extends State<Pixorama> {
   // The StreamingConnectionHandler helps us keep a persistant connection and
   // automatically reconnects if we lose the connection to the server.
   late final StreamingConnectionHandler connectionHandler;
@@ -88,24 +88,22 @@ class _PixoramaState extends State<Pixorama> {
     // show the current connection status at the bottom of the screen. In a
     // real world app, we may only want to show the connection status when
     // we lost connection to the server or not at all.
-    return Scaffold(
-      body: ConnectionDisplay(
-        connectionState: connectionHandler.status,
-        child: Center(
-          child: imageController == null
-              ? const CircularProgressIndicator()
-              : PixelEditor(
-                  controller: imageController!,
-                  onSetPixel: (details) {
-                    client.pixorama.sendStreamMessage(
-                      ImageUpdate(
-                        pixelIndex: details.tapDetails.index,
-                        colorIndex: details.colorIndex,
-                      ),
-                    );
-                  },
-                ),
-        ),
+    return ConnectionDisplay(
+      connectionState: connectionHandler.status,
+      child: Center(
+        child: imageController == null
+            ? const CircularProgressIndicator()
+            : PixelEditor(
+                controller: imageController!,
+                onSetPixel: (details) {
+                  client.pixorama.sendStreamMessage(
+                    ImageUpdate(
+                      pixelIndex: details.tapDetails.index,
+                      colorIndex: details.colorIndex,
+                    ),
+                  );
+                },
+              ),
       ),
     );
   }
