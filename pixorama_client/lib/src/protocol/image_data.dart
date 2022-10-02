@@ -17,11 +17,13 @@ class ImageData extends SerializableEntity {
   @override
   String get className => 'ImageData';
 
+  int? id;
   late ByteData pixels;
   late int width;
   late int height;
 
   ImageData({
+    this.id,
     required this.pixels,
     required this.width,
     required this.height,
@@ -29,6 +31,7 @@ class ImageData extends SerializableEntity {
 
   ImageData.fromSerialization(Map<String, dynamic> serialization) {
     var _data = unwrapSerializationData(serialization);
+    id = _data['id'];
     pixels = _data['pixels'] is String
         ? (_data['pixels'] as String).base64DecodedByteData()!
         : ByteData.view((_data['pixels'] as Uint8List).buffer);
@@ -39,6 +42,7 @@ class ImageData extends SerializableEntity {
   @override
   Map<String, dynamic> serialize() {
     return wrapSerializationData({
+      'id': id,
       'pixels': pixels.base64encodedString(),
       'width': width,
       'height': height,
