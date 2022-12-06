@@ -28,10 +28,11 @@ class PixoramaApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
-        body: MadeWithServerpod(
+        body: SafeArea(
+            child: MadeWithServerpod(
           url: Uri.parse('https://github.com/serverpod/pixorama'),
           child: const Pixorama(),
-        ),
+        )),
       ),
     );
   }

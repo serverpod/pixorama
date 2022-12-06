@@ -11,6 +11,11 @@ import 'dart:typed_data' as typed_data;
 import 'package:serverpod_client/serverpod_client.dart';
 import 'protocol.dart';
 
+/// The Pixorama endpoint handles all communication related to keeping clients
+/// up-to-date with the latest version of the pixel image. When a client first
+/// connects, it is sent a full version of the image with the ImageData message.
+/// Whenever a pixel is being edited by a client, we store the edit in the
+/// _pixelData array and pass on the changes to all connected clients.
 class _EndpointPixorama extends EndpointRef {
   @override
   String get name => 'pixorama';

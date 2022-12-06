@@ -39,5 +39,8 @@ class Protocol extends SerializationManagerServer {
         ImageData.fromSerialization(serialization);
     constructors['ImageUpdate'] = (Map<String, dynamic> serialization) =>
         ImageUpdate.fromSerialization(serialization);
+
+    tableClassMapping['image_data'] = 'ImageData';
+    typeTableMapping[ImageData] = ImageData.t;
   }
 }
