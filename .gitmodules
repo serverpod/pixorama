@@ -1,0 +1,3 @@
+[submodule "vendor/serverpod"]
+	path = vendor/serverpod
+	url = git@github.com:serverpod/serverpod.git

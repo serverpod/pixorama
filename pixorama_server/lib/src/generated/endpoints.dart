@@ -1,31 +1,29 @@
 /* AUTOMATICALLY GENERATED CODE DO NOT MODIFY */
 /*   To generate run: "serverpod generate"    */
 
+// ignore_for_file: library_private_types_in_public_api
 // ignore_for_file: public_member_api_docs
-// ignore_for_file: unnecessary_import
-// ignore_for_file: unused_import
+// ignore_for_file: implementation_imports
 
-import 'dart:typed_data' as typed_data;
-import 'package:serverpod/serverpod.dart';
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:serverpod/serverpod.dart' as _i1;
+import '../endpoints/pixorama_endpoint.dart' as _i2;
 
-import 'protocol.dart';
-
-import '../endpoints/pixorama_endpoint.dart';
-
-class Endpoints extends EndpointDispatch {
+class Endpoints extends _i1.EndpointDispatch {
   @override
-  void initializeEndpoints(Server server) {
-    var endpoints = <String, Endpoint>{
-      'pixorama': PixoramaEndpoint()..initialize(server, 'pixorama', null),
+  void initializeEndpoints(_i1.Server server) {
+    var endpoints = <String, _i1.Endpoint>{
+      'pixorama': _i2.PixoramaEndpoint()
+        ..initialize(
+          server,
+          'pixorama',
+          null,
+        )
     };
-
-    connectors['pixorama'] = EndpointConnector(
+    connectors['pixorama'] = _i1.EndpointConnector(
       name: 'pixorama',
       endpoint: endpoints['pixorama']!,
       methodConnectors: {},
     );
   }
-
-  @override
-  void registerModules(Serverpod pod) {}
 }

@@ -1,27 +1,15 @@
 /* AUTOMATICALLY GENERATED CODE DO NOT MODIFY */
 /*   To generate run: "serverpod generate"    */
 
-// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: library_private_types_in_public_api
 // ignore_for_file: public_member_api_docs
-// ignore_for_file: unused_import
-// ignore_for_file: unnecessary_import
-// ignore_for_file: overridden_fields
-// ignore_for_file: no_leading_underscores_for_local_identifiers
-// ignore_for_file: depend_on_referenced_packages
+// ignore_for_file: implementation_imports
 
-import 'package:serverpod_client/serverpod_client.dart';
-import 'dart:typed_data';
-import 'protocol.dart';
+// ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'dart:typed_data' as _i2;
 
-class ImageData extends SerializableEntity {
-  @override
-  String get className => 'ImageData';
-
-  int? id;
-  late ByteData pixels;
-  late int width;
-  late int height;
-
+class ImageData extends _i1.SerializableEntity {
   ImageData({
     this.id,
     required this.pixels,
@@ -29,23 +17,35 @@ class ImageData extends SerializableEntity {
     required this.height,
   });
 
-  ImageData.fromSerialization(Map<String, dynamic> serialization) {
-    var _data = unwrapSerializationData(serialization);
-    id = _data['id'];
-    pixels = _data['pixels'] is String
-        ? (_data['pixels'] as String).base64DecodedByteData()!
-        : ByteData.view((_data['pixels'] as Uint8List).buffer);
-    width = _data['width']!;
-    height = _data['height']!;
+  factory ImageData.fromJson(
+    Map<String, dynamic> jsonSerialization,
+    _i1.SerializationManager serializationManager,
+  ) {
+    return ImageData(
+      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
+      pixels: serializationManager
+          .deserialize<_i2.ByteData>(jsonSerialization['pixels']),
+      width: serializationManager.deserialize<int>(jsonSerialization['width']),
+      height:
+          serializationManager.deserialize<int>(jsonSerialization['height']),
+    );
   }
 
+  int? id;
+
+  _i2.ByteData pixels;
+
+  int width;
+
+  int height;
+
   @override
-  Map<String, dynamic> serialize() {
-    return wrapSerializationData({
+  Map<String, dynamic> toJson() {
+    return {
       'id': id,
-      'pixels': pixels.base64encodedString(),
+      'pixels': pixels,
       'width': width,
       'height': height,
-    });
+    };
   }
 }
