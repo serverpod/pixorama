@@ -243,24 +243,24 @@ packages:
   serverpod_client:
     dependency: transitive
     description:
-      name: serverpod_client
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod_client"
+      relative: true
+    source: path
+    version: "0.9.20"
   serverpod_flutter:
     dependency: "direct main"
     description:
-      name: serverpod_flutter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod_flutter"
+      relative: true
+    source: path
+    version: "0.9.20"
   serverpod_serialization:
     dependency: transitive
     description:
-      name: serverpod_serialization
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod_serialization"
+      relative: true
+    source: path
+    version: "0.9.20"
   sky_engine:
     dependency: transitive
     description: flutter

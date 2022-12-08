@@ -27,7 +27,8 @@ dependencies:
   pixels: ^1.0.1
   pixorama_client:
     path: ../pixorama_client
-  serverpod_flutter: ^0.9.19
+  serverpod_flutter:
+    path: ../vendor/serverpod/packages/serverpod_flutter
   url_strategy: ^0.2.0
 
 

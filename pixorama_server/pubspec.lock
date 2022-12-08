@@ -137,38 +137,38 @@ packages:
   serverpod:
     dependency: "direct main"
     description:
-      name: serverpod
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod"
+      relative: true
+    source: path
+    version: "0.9.20"
   serverpod_client:
     dependency: transitive
     description:
-      name: serverpod_client
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod_client"
+      relative: true
+    source: path
+    version: "0.9.20"
   serverpod_serialization:
     dependency: transitive
     description:
-      name: serverpod_serialization
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod_serialization"
+      relative: true
+    source: path
+    version: "0.9.20"
   serverpod_service_client:
     dependency: transitive
     description:
-      name: serverpod_service_client
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod_service_client"
+      relative: true
+    source: path
+    version: "0.9.20"
   serverpod_shared:
     dependency: transitive
     description:
-      name: serverpod_shared
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.9.19"
+      path: "../vendor/serverpod/packages/serverpod_shared"
+      relative: true
+    source: path
+    version: "0.9.20"
   source_span:
     dependency: transitive
     description:

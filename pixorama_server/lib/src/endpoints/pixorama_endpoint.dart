@@ -161,7 +161,7 @@ class PixoramaEndpoint extends Endpoint {
 
       // Notify all connected clients that we set a pixel, by posting a message
       // to the _channelPixelAdded channel.
-      session.messages.postMessage(_channelPixelAdded, message, local: true);
+      session.messages.postMessage(_channelPixelAdded, message, global: false);
     }
   }
 }
