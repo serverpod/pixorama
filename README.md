@@ -22,12 +22,13 @@ The main Pixorama client/Flutter code can be found in
 To run the server locally, you need to first install Serverpod. Check the
 [docs on getting started](https://docs.serverpod.dev).
 
-Next, you need to setup the Docker container and Serverpod database tables:
+Next, you need to setup the Docker container and Serverpod & Pixorama database tables:
 
 ```bash
 cd pixorama_server
 docker-compose up --build --detach
 docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
+docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
 ```
 
 Finally you should be able to start the server by running:
@@ -38,3 +39,6 @@ dart bin/main.dart
 
 In the Flutter app you will need to modify the `main.dart` file to connect to
 the local server instead of the live app server.
+
+## Hosting the Flutter app with Serverpod
+This project demonstrates how to use Serverpod to host a Flutter app. The [deployment-aws.yml](.github/workflows/deployment-aws.yml) file in Github workflows contains the code that will build the web app in CI/CD. You will also need the [build_web](scripts/build_web) script and use the modifications in the server's [server.dart](pixorama_server/lib/server,dart) file.
