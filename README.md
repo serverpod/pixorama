@@ -31,6 +31,12 @@ docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgr
 docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
 ```
 
+Next, you need to fetch packages for serverpod.
+
+```bash
+dart pub get
+```
+
 Finally you should be able to start the server by running:
 
 ```bash
