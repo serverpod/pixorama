@@ -31,7 +31,7 @@ docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgr
 docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
 ```
 
-In this setup, postgres and redis images are run within Docker. The version of Pixorama runs the serverpod locally from the vendor directory.
+This version of Pixorama runs the serverpod locally from the vendor directory, and postgres and redis are run within Docker containers. 
 
 ```bash
 cd vendor
