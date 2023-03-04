@@ -26,9 +26,30 @@ Next, you need to setup the Docker container and Serverpod & Pixorama database t
 
 ```bash
 cd pixorama_server
-docker-compose up --build --detach
-docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
-docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
+docker compose up --build --detach
+docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
+docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
+```
+The first docker compose exec commands should return verifications like:
+```bash
+CREATE TABLE
+ALTER TABLE
+CREATE INDEX
+CREATE TABLE
+ALTER TABLE
+CREATE INDEX
+CREATE INDEX
+...
+.
+.
+CREATE INDEX
+ALTER TABLE
+```
+
+The second docker compose exec commands should return on create and one alter verifications like:
+```bash
+CREATE TABLE
+ALTER TABLE
 ```
 
 This version of Pixorama runs the serverpod locally from the vendor directory, and postgres and redis are run within Docker containers. 
