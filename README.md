@@ -30,7 +30,7 @@ docker compose up --build --detach
 docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
 docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
 ```
-The first docker compose exec commands should return verifications like:
+The first docker compose exec commands should return numerous sql verifications like:
 ```bash
 CREATE TABLE
 ALTER TABLE
@@ -46,7 +46,7 @@ CREATE INDEX
 ALTER TABLE
 ```
 
-The second docker compose exec commands should return on create and one alter verifications like:
+The second docker compose exec commands should return two sql verifications like:
 ```bash
 CREATE TABLE
 ALTER TABLE
