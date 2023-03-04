@@ -26,6 +26,7 @@ Next, you need to setup the Docker container and Serverpod & Pixorama database t
 
 ```bash
 cd pixorama_server
+serverpod generate
 docker compose up --build --detach
 docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
 docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
