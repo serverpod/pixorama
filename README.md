@@ -82,7 +82,7 @@ The debugger will open chrome and the server will return the following screen.
 
 <img width="1312" alt="image" src="https://user-images.githubusercontent.com/611808/222937342-e9d01f59-f73a-49d3-992b-c8d7560b08a1.png">
 
-You can select a color from the pallete on the right and click on a location in the square to the left. The pixel color should change. You can open several chrome tabs all pointing to the same url as that opened by the flutter debugger and see that changing a pixel in one window updates all the other screens, as shown below.
+Select a color from the pallete on the right side, then click on a location in the square to the left. The pixel color should change. Open several chrome tabs with the same url as that opened by the flutter debugger. Changing a pixel in one window should update all the other the images in the other browser windows, as shown below.
 
 <img width="1629" alt="image" src="https://user-images.githubusercontent.com/611808/222937680-00118904-5d11-42f9-b6d6-58d32f4e2c2a.png">
 
