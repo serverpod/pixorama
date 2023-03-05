@@ -61,23 +61,21 @@ git clone https://github.com/serverpod/serverpod.git
 cd ..
 ```
 
-Next, you need to fetch packages for serverpod.
+Next, fetch packages for serverpod.
 
 ```bash
 dart pub get
 ```
 
-Finally you should be able to start the server by running:
+Finally, start the server by typing:
 
 ```bash
 dart bin/main.dart
 ```
 
-In the Flutter app you will need to modify the `main.dart` file to connect to
-the local server instead of the live app server.
+In another window, go to pixorama_flutter and modify the `lib/main.dart` file to use the local server url instead of the live app server. Then type:
 
 ```bash
-cd pixorama_flutter
 flutter run
 ```
 The debugger will open chrome and the server will return the following screen. 
