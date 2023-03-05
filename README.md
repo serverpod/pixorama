@@ -76,5 +76,15 @@ dart bin/main.dart
 In the Flutter app you will need to modify the `main.dart` file to connect to
 the local server instead of the live app server.
 
+```bash
+cd pixorama_flutter
+flutter run
+```
+The debugger will open chrome and the server will return the following screen. 
+
+<img width="1312" alt="image" src="https://user-images.githubusercontent.com/611808/222937342-e9d01f59-f73a-49d3-992b-c8d7560b08a1.png">
+
+You can select a color from the pallete on the right and click on a location in the square to the left. The pixel color should change. You can open several chrome tabs all pointing to the same url as that opened by the flutter debugger and see that changing a pixel in one window updates all the other screens.
+
 ## Hosting the Flutter app with Serverpod
 This project demonstrates how to use Serverpod to host a Flutter app. The [deployment-aws.yml](.github/workflows/deployment-aws.yml) file in Github workflows contains the code that will build the web app in CI/CD. You will also need the [build_web](scripts/build_web) script and use the modifications in the server's [server.dart](pixorama_server/lib/server.dart) file.
