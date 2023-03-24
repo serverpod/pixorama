@@ -26,25 +26,66 @@ Next, you need to setup the Docker container and Serverpod & Pixorama database t
 
 ```bash
 cd pixorama_server
-docker-compose up --build --detach
-docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
-docker-compose run postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
+serverpod generate
+docker compose up --build --detach
+docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
+docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
+```
+The first docker compose exec commands should return numerous sql verifications like:
+```bash
+CREATE TABLE
+ALTER TABLE
+CREATE INDEX
+CREATE TABLE
+ALTER TABLE
+CREATE INDEX
+CREATE INDEX
+...
+.
+.
+CREATE INDEX
+ALTER TABLE
 ```
 
-Next, you need to fetch packages for serverpod.
+The second docker compose exec commands should return two sql verifications like:
+```bash
+CREATE TABLE
+ALTER TABLE
+```
+
+This version of Pixorama runs the serverpod locally from the vendor directory, and postgres and redis are run within Docker containers. 
+
+```bash
+cd vendor
+git clone https://github.com/serverpod/serverpod.git
+cd ..
+```
+
+Next, fetch packages for serverpod.
 
 ```bash
 dart pub get
 ```
 
-Finally you should be able to start the server by running:
+Finally, start the server by typing:
 
 ```bash
 dart bin/main.dart
 ```
 
-In the Flutter app you will need to modify the `main.dart` file to connect to
-the local server instead of the live app server.
+In another window, go to pixorama_flutter and modify the `lib/main.dart` file to use the local server url instead of the live app server. Then type:
+
+```bash
+flutter run
+```
+The debugger will open chrome and the server will return the following screen. 
+
+<img width="1312" alt="image" src="https://user-images.githubusercontent.com/611808/222937342-e9d01f59-f73a-49d3-992b-c8d7560b08a1.png">
+
+Select a color from the pallete on the right side, then click on a location in the square to the left. The pixel color should change. Open several chrome tabs with the same url as that opened by the flutter debugger. Changing a pixel in one window should update all the other the images in the other browser windows, as shown below.
+
+<img width="1629" alt="image" src="https://user-images.githubusercontent.com/611808/222937680-00118904-5d11-42f9-b6d6-58d32f4e2c2a.png">
+
 
 ## Hosting the Flutter app with Serverpod
 This project demonstrates how to use Serverpod to host a Flutter app. The [deployment-aws.yml](.github/workflows/deployment-aws.yml) file in Github workflows contains the code that will build the web app in CI/CD. You will also need the [build_web](scripts/build_web) script and use the modifications in the server's [server.dart](pixorama_server/lib/server.dart) file.
