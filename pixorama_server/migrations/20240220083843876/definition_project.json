@@ -1,0 +1,11 @@
+{
+  "moduleName": "pixorama",
+  "tables": [],
+  "installedModules": [
+    {
+      "module": "serverpod",
+      "version": "20240115074235544"
+    }
+  ],
+  "migrationApiVersion": 1
+}

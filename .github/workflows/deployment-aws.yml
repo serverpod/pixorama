@@ -23,16 +23,10 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Setup Flutter SDK
-        uses: flutter-actions/setup-flutter@v2
+      - name: Setup Dart SDK
+        uses: dart-lang/setup-dart@v1.3
         with:
-          channel: stable
-          version: 3.3.2
-
-      - name: Compile Flutter web app
-        shell: bash
-        run: |
-          scripts/build_web
+          sdk: 3.0
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
@@ -51,20 +45,27 @@ jobs:
           echo "$SERVERPOD_PASSWORDS" > config/passwords.yaml
           ls config/
 
+      - name: Get Dart packages
+        working-directory: pixorama_server
+        run: dart pub get
+
+      - name: Compile server
+        working-directory: pixorama_server
+        run: dart compile kernel bin/main.dart
 
       - name: Create CodeDeploy Deployment
         id: deploy
         env:
           PROJECT_NAME: pixorama
           AWS_NAME: pixorama
-          DEPLOYMENT_BUCKET: pixorama-deployment-564135
+          DEPLOYMENT_BUCKET: pixorama-deployment-5800585
           TARGET: ${{ github.event.inputs.target }}
         run: |
           # Deploy server to AWS
           TARGET="${TARGET:=${GITHUB_REF##*-}}"
           echo "Deploying to target: $TARGET"
           mkdir -p vendor
-          cp "${PROJECT_NAME}_server/aws/scripts/appspec.yml" appspec.yml
+          cp "${PROJECT_NAME}_server/deploy/aws/scripts/appspec.yml" appspec.yml
           zip -r deployment.zip .
           aws s3 cp deployment.zip "s3://${DEPLOYMENT_BUCKET}/deployment.zip"
           aws deploy create-deployment \

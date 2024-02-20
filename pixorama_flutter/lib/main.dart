@@ -1,24 +1,22 @@
 import 'package:made_with_serverpod/made_with_serverpod.dart';
 import 'package:pixorama_client/pixorama_client.dart';
 import 'package:flutter/material.dart';
-import 'package:pixorama_flutter/src/pixorama/pixorama.dart';
+import 'package:pixorama_flutter/src/pixorama.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
 
-// Change this to use the live server or to connect to a local server.
-var client = Client('https://api.pixorama.live/');
-// var client = Client('http://localhost:8080/');
+// ignore: constant_identifier_names
+const USE_LIVE_SERVER = true;
+var client = Client(USE_LIVE_SERVER ? 'https://api.pixorama.live/' : 'http://$localhost:8080/')..connectivityMonitor = FlutterConnectivityMonitor();
 
 void main() {
-  client.connectivityMonitor = FlutterConnectivityMonitor();
-
   // Hide that pesky /#/ in the URL for web app.
   setPathUrlStrategy();
   runApp(const PixoramaApp());
 }
 
 class PixoramaApp extends StatelessWidget {
-  const PixoramaApp({Key? key}) : super(key: key);
+  const PixoramaApp({super.key});
 
   @override
   Widget build(BuildContext context) {

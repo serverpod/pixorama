@@ -31,12 +31,8 @@
 .pub/
 /build/
 
-android/
-ios/
-macos/
-windows/
-
 # Web related
+lib/generated_plugin_registrant.dart
 
 # Symbolication related
 app.*.symbols

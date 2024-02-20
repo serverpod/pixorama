@@ -8,7 +8,7 @@ For full Serverpod documentation, please visit
 
 ## Server code
 On the server side there are three main files that makes Pixorama tick. Two
-serializable objects, found in the [protocol](pixorama_server/lib/src/protocol)
+serializable objects, found in the [generated](pixorama_server/lib/src/generated)
 directory and the
 [PixoramaEndpoint](pixorama_server/lib/src/endpoints/pixorama_endpoint.dart)
 class. Those files are great starting points for understanding how Pixorama
@@ -28,43 +28,13 @@ Next, you need to setup the Docker container and Serverpod & Pixorama database t
 cd pixorama_server
 serverpod generate
 docker compose up --build --detach
-docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables-serverpod.pgsql
-docker compose exec -T postgres env PGPASSWORD="PASSWORD" psql -h postgres -U postgres -d pixorama < generated/tables.pgsql
-```
-The first docker compose exec commands should return numerous sql verifications like:
-```bash
-CREATE TABLE
-ALTER TABLE
-CREATE INDEX
-CREATE TABLE
-ALTER TABLE
-CREATE INDEX
-CREATE INDEX
-...
-.
-.
-CREATE INDEX
-ALTER TABLE
+
 ```
 
-The second docker compose exec commands should return two sql verifications like:
-```bash
-CREATE TABLE
-ALTER TABLE
-```
-
-This version of Pixorama runs the serverpod locally from the vendor directory, and postgres and redis are run within Docker containers. 
+Next, run migrations by typing:
 
 ```bash
-cd vendor
-git clone https://github.com/serverpod/serverpod.git
-cd ..
-```
-
-Next, fetch packages for serverpod.
-
-```bash
-dart pub get
+dart bin/main.dart --apply-migrations
 ```
 
 Finally, start the server by typing:
@@ -76,7 +46,7 @@ dart bin/main.dart
 In another window, go to pixorama_flutter and modify the `lib/main.dart` file to use the local server url instead of the live app server. Then type:
 
 ```bash
-flutter run
+flutter run -d chrome
 ```
 The debugger will open chrome and the server will return the following screen. 
 
