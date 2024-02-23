@@ -32,41 +32,23 @@ var _pixelData = Uint8List(_numPixels)
 /// Whenever a pixel is being edited by a client, we store the edit in the
 /// _pixelData array and pass on the changes to all connected clients.
 class PixoramaEndpoint extends Endpoint {
-  // The database timer is only set when a timer is running. It is used to batch
-  // together updates to the database, so it isn't updated every time we add a
-  // pixel. If thousands of people add pixels simultaneously that would add very
-  // many writes to the database.
   static Timer? _databaseTimer;
 
-  // Updates a pixel in our pixel data.
   static void _setPixel(int colorIndex, int pixelIndex) {
     _pixelData[pixelIndex] = colorIndex;
 
-    // Instead of immediately updating the database, we trigger the write in
-    // 10 seconds. Any changed pixels within the 10 second period will be
-    // grouped together into a single write.
     _databaseTimer ??= Timer(
       const Duration(seconds: 10),
       _writeImageToDatabase,
     );
   }
 
-  // Writes the pixel image to the database.
   static Future<void> _writeImageToDatabase() async {
-    // Reset the timer so we trigger new writes.
     _databaseTimer = null;
 
-    // For most cases we will be provided a session object automatically. E.g.
-    // in method calls, when we receive a streamed message or in a future call.
-    // If you run asyncronous code outside of a context, you will need to
-    // manually create a new session. If you create a session, you are also
-    // responsible to close it when you are done, or it could lead to memory
-    // leaks within your server.
-    var session = await Serverpod.instance!.createSession(enableLogging: true);
+    var session = await Serverpod.instance.createSession(enableLogging: true);
     try {
-      // Fetch the image data that we want to update. If there is no data in the
-      // database already, we create a new row for the image data.
-      var imageData = await ImageData.findSingleRow(session);
+      var imageData = await ImageData.db.findFirstRow(session);
       if (imageData == null) {
         // Create a new ImageData row in the database.
         imageData = ImageData(
@@ -74,28 +56,29 @@ class PixoramaEndpoint extends Endpoint {
           width: _imageWidth,
           height: _imageHeight,
         );
-        await ImageData.insert(session, imageData);
+        await ImageData.db.insert(session, [
+          imageData
+        ]);
       } else {
         // Update the existing entry.
         imageData.pixels = _pixelData.buffer.asByteData();
-        await ImageData.update(session, imageData);
+        await ImageData.db.update(session, [
+          imageData
+        ]);
       }
     } catch (e, stackTrace) {
-      // If we finish with an error, we should close the session with the error
-      // so that it gets logged.
       await session.close(error: e, stackTrace: stackTrace);
       return;
     }
-    // Always close sessions you create.
     await session.close();
   }
 
   /// Loads the pixel image from the database.
   static Future<void> loadImageFromDatabase() async {
-    var session = await Serverpod.instance!.createSession(enableLogging: true);
+    var session = await Serverpod.instance.createSession(enableLogging: true);
     try {
       // Load the image data, if it exists.
-      var imageData = await ImageData.findSingleRow(session);
+      var imageData = await ImageData.db.findFirstRow(session);
       if (imageData != null) {
         _pixelData = imageData.pixels.buffer.asUint8List();
       }

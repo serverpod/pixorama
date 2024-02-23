@@ -4,7 +4,6 @@ import 'package:pixorama_client/pixorama_client.dart';
 import 'package:pixorama_flutter/main.dart';
 import 'package:pixorama_flutter/src/connection_display.dart';
 
-// Use the r/place palette, but we can use any 16 color palette here.
 const _palette = PixelPalette.rPlace();
 
 class Pixorama extends StatefulWidget {
@@ -17,25 +16,15 @@ class Pixorama extends StatefulWidget {
 }
 
 class PixoramaState extends State<Pixorama> {
-  // The StreamingConnectionHandler helps us keep a persistant connection and
-  // automatically reconnects if we lose the connection to the server.
   late final StreamingConnectionHandler connectionHandler;
-
-  // The PixelImageController allows us to update the pixel image when we
-  // receive updates from the server. It is null until we got a first full
-  // image from the server.
   PixelImageController? imageController;
 
   @override
   void initState() {
     super.initState();
 
-    // Start listening to updates from the Pixorama endpoint.
     _listenToUpdates();
 
-    // Setup our connection handler and open a streaming connection to the
-    // server. The [StreamingConnectionHandler] will attempt to reconnect until
-    // the `close` method is called.
     connectionHandler = StreamingConnectionHandler(
       client: client,
       listener: (connectionState) {
@@ -46,15 +35,9 @@ class PixoramaState extends State<Pixorama> {
   }
 
   Future<void> _listenToUpdates() async {
-    // Handle each update from the server as it arrives. It can be either a full
-    // image when we first connect, or sequential updates once we are connected
-    // and other users adds pixels to the image.
     await for (var update in client.pixorama.stream) {
       if (update is ImageData) {
-        // We got a full new image.
         if (imageController == null) {
-          // This is the first image we are receiving, create a new image
-          // controller.
           setState(() {
             imageController = PixelImageController(
               pixels: update.pixels,
@@ -64,13 +47,9 @@ class PixoramaState extends State<Pixorama> {
             );
           });
         } else {
-          // We have already received a full image before, so we just replace
-          // the pixels in the controller that we have. This can happen if
-          // we lost connection to the server and connect again.
           imageController!.pixels = update.pixels;
         }
       } else if (update is ImageUpdate) {
-        // Got an incremental update of the image. Just set the single pixel.
         imageController?.setPixelIndex(
           pixelIndex: update.pixelIndex,
           colorIndex: update.colorIndex,
