@@ -1,0 +1,15 @@
+# This class contains a full image and is sent from the server to the app.
+# The pixels is a byte array where each byte represents a pixel.
+class: ImageData
+
+# By adding the table to the protocol yaml-file we create bindings to the
+# database, so that this object can be read and stored. The database code to
+# setup the table is saved in the `generated/tables.pgsql` file. We will need
+# to manually add the table to the database. Future versions of Serverpod will
+# be able to automatically manage database migration and creation of tables.
+table: image_data
+
+fields:
+  pixels: ByteData
+  width: int
+  height: int

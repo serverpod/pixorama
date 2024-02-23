@@ -9,22 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'dart:async' as _i2;
-import 'protocol.dart' as _i3;
-
-/// {@category Endpoint}
-class EndpointExample extends _i1.EndpointRef {
-  EndpointExample(_i1.EndpointCaller caller) : super(caller);
-
-  @override
-  String get name => 'example';
-
-  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
-        'example',
-        'hello',
-        {'name': name},
-      );
-}
+import 'protocol.dart' as _i2;
 
 /// The Pixorama endpoint handles all communication related to keeping clients
 /// up-to-date with the latest version of the pixel image. When a client first
@@ -48,25 +33,19 @@ class Client extends _i1.ServerpodClient {
     Duration? connectionTimeout,
   }) : super(
           host,
-          _i3.Protocol(),
+          _i2.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,
           connectionTimeout: connectionTimeout,
         ) {
-    example = EndpointExample(this);
     pixorama = EndpointPixorama(this);
   }
-
-  late final EndpointExample example;
 
   late final EndpointPixorama pixorama;
 
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {
-        'example': example,
-        'pixorama': pixorama,
-      };
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {'pixorama': pixorama};
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};

@@ -24,7 +24,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  serverpod_flutter: 1.2.3
+  serverpod_flutter: 1.2.4
   pixorama_client:
     path: ../pixorama_client
 

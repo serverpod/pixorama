@@ -1,0 +1,7 @@
+# The ImageUpdate represents a changed pixel in the image. It is sent from the
+# client whenever a pixel has been edited and is passed along by the server to
+# all other connected clients.
+class: ImageUpdate
+fields:
+  pixelIndex: int
+  colorIndex: int
