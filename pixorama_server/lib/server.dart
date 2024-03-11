@@ -1,3 +1,4 @@
+import 'package:pixorama_server/src/endpoints/pixorama_endpoint.dart';
 import 'package:serverpod/serverpod.dart';
 
 import 'package:pixorama_server/src/web/routes/root.dart';
@@ -23,11 +24,17 @@ void run(List<String> args) async {
   // Setup a default page at the web root.
   pod.webServer.addRoute(RouteRoot(), '/');
   pod.webServer.addRoute(RouteRoot(), '/index.html');
+
   // Serve all files in the /static directory.
   pod.webServer.addRoute(
-    RouteStaticDirectory(serverDirectory: 'static', basePath: '/'),
+    RouteStaticDirectory(serverDirectory: 'app', basePath: '/'),
     '/*',
   );
+
+  // Load the image from the database before we boot up the server. This is a
+  // point where we can do this and other additional setup work before the
+  // server starts.
+  await PixoramaEndpoint.loadImageFromDatabase();
 
   // Start the server.
   await pod.start();

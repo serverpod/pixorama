@@ -9,5 +9,5 @@ build/
 doc/api/
 
 # Passwords file
-//This password file is needed to run the server locally
+# This password file is needed to run the server locally
 # config/passwords.yaml

@@ -56,15 +56,11 @@ class PixoramaEndpoint extends Endpoint {
           width: _imageWidth,
           height: _imageHeight,
         );
-        await ImageData.db.insert(session, [
-          imageData
-        ]);
+        await ImageData.db.insertRow(session, imageData);
       } else {
         // Update the existing entry.
         imageData.pixels = _pixelData.buffer.asByteData();
-        await ImageData.db.update(session, [
-          imageData
-        ]);
+        await ImageData.db.updateRow(session, imageData);
       }
     } catch (e, stackTrace) {
       await session.close(error: e, stackTrace: stackTrace);

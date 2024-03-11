@@ -26,7 +26,6 @@ Next, you need to setup the Docker container and Serverpod & Pixorama database t
 
 ```bash
 cd pixorama_server
-serverpod generate
 docker compose up --build --detach
 
 ```
@@ -34,7 +33,7 @@ docker compose up --build --detach
 Next, run migrations by typing:
 
 ```bash
-dart bin/main.dart --apply-migrations
+dart bin/main.dart --role maintenance
 ```
 
 Finally, start the server by typing:
@@ -43,12 +42,12 @@ Finally, start the server by typing:
 dart bin/main.dart
 ```
 
-In another window, go to pixorama_flutter and modify the `lib/main.dart` file to use the local server url instead of the live app server. Then type:
+In another window, go to pixorama_flutter and then type:
 
 ```bash
-flutter run -d chrome
+flutter run -d Chrome
 ```
-The debugger will open chrome and the server will return the following screen. 
+Flutter will open Chrome and start the Pixorama app.  
 
 <img width="1312" alt="image" src="https://user-images.githubusercontent.com/611808/222937342-e9d01f59-f73a-49d3-992b-c8d7560b08a1.png">
 

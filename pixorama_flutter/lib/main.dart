@@ -5,6 +5,7 @@ import 'package:pixorama_flutter/src/pixorama.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+// Connect to a local server
 var client = Client('http://localhost:8080/');
 
 void main() {
