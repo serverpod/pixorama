@@ -37,4 +37,3 @@ redis:
   enabled: false
   host: redis.pixorama.live
   port: 6379
-  

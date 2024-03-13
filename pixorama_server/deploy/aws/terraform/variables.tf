@@ -128,16 +128,6 @@ variable "subdomain_storage" {
   type        = string
 }
 
-variable "subdomain_database_staging" {
-  description = "The domain name for use with the database"
-  type        = string
-}
-
-variable "subdomain_redis_staging" {
-  description = "The domain name for use with Redis"
-  type        = string
-}
-
 variable "subdomain_api_staging" {
   description = "The domain name for use by api staging"
   type        = string
@@ -150,11 +140,6 @@ variable "subdomain_insights_staging" {
 
 variable "subdomain_web_staging" {
   description = "The domain name for use by web server staging"
-  type        = string
-}
-
-variable "subdomain_storage_staging" {
-  description = "The domain name for use with public storage"
   type        = string
 }
 
@@ -175,24 +160,9 @@ variable "private_storage_bucket_name" {
   type        = string
 }
 
-variable "public_storage_bucket_name_staging" {
-  description = "Name of S3 bucket used for public storage"
-  type        = string
-}
-
-variable "private_storage_bucket_name_staging" {
-  description = "Name of S3 bucket used for private storage"
-  type        = string
-}
-
 # Database
 
 variable "DATABASE_PASSWORD_PRODUCTION" {
-  description = "The production database password, you can find it in the config/passwords.yaml file."
-  type        = string
-}
-
-variable "DATABASE_PASSWORD_STAGING" {
-  description = "The staging database password, you can find it in the config/passwords.yaml file (no need to specify if you aren't deployning a staging environment)."
+  description = "The production database password, you can find it in the config/passwords.yaml file"
   type        = string
 }

@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pixels/pixels.dart';
 import 'package:pixorama_client/pixorama_client.dart';
 import 'package:pixorama_flutter/main.dart';
-import 'package:pixorama_flutter/src/connection_display.dart';
+import 'package:pixorama_flutter/src/pixorama/connection_display.dart';
 
+// Use the r/place palette, but we can use any 16 color palette here.
 const _palette = PixelPalette.rPlace();
 
 class Pixorama extends StatefulWidget {
@@ -28,6 +29,7 @@ class PixoramaState extends State<Pixorama> {
   @override
   void initState() {
     super.initState();
+
     // Start listening to updates from the Pixorama endpoint.
     _listenToUpdates();
 

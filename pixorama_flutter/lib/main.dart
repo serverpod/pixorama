@@ -1,7 +1,7 @@
 import 'package:made_with_serverpod/made_with_serverpod.dart';
 import 'package:pixorama_client/pixorama_client.dart';
 import 'package:flutter/material.dart';
-import 'package:pixorama_flutter/src/pixorama.dart';
+import 'package:pixorama_flutter/src/pixorama/pixorama.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:url_strategy/url_strategy.dart';
 

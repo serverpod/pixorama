@@ -11,10 +11,7 @@
 # characters.
 project_name = "pixorama"
 
-# The region where to deploy the server. If you change the region you will also
-# need to update the instance_ami variable (see below) and update the region in
-# the .github/workflows/deployment-aws.yml file. In some cases you will also
-# need to update your instance_type.
+# The region where to deploy the server.
 aws_region = "us-west-2"
 
 # Enabling Redis may incur additional costs. You will also need to enable Redis
@@ -36,19 +33,15 @@ cloudfront_certificate_arn = "arn:aws:acm:us-east-1:271091916410:certificate/5c5
 # Subdomains for different services. Default values are recommended, but you
 # may want to change the subdomain_web to www if you are using the top domain
 # for the web server.
-subdomain_database = "database"
-subdomain_redis    = "redis"
-subdomain_api      = "api"
-subdomain_insights = "insights"
-subdomain_web      = "app"
-subdomain_storage  = "storage"
-
-subdomain_database_staging = "database-staging"
-subdomain_redis_staging    = "redis-staging"
+subdomain_database         = "database"
+subdomain_redis            = "redis"
+subdomain_api              = "api"
+subdomain_insights         = "insights"
+subdomain_web              = "www"
+subdomain_storage          = "storage"
 subdomain_api_staging      = "api-staging"
 subdomain_insights_staging = "insights-staging"
 subdomain_web_staging      = "app-staging"
-subdomain_storage_staging  = "storage-staging"
 
 # Set to true if you want to use the top domain for the web server.
 use_top_domain_for_web = true
@@ -57,8 +50,6 @@ use_top_domain_for_web = true
 # region, you will have to change the AMI as they are bound to specific regions.
 # Serverpod is tested with Amazon Linux 2 Kernel 5.x (You can find the AMI ids
 # for a specifc region under EC2 > AMI Catalog in your AWS console.)
-# Note: For some regions the t2.micro is not available. If so, consult the AWS
-# documentation to find another instance type that suits your needs.
 instance_type                = "t2.micro"
 instance_ami                 = "ami-0ca285d4c2cda3300"
 autoscaling_min_size         = 1
@@ -81,8 +72,6 @@ staging_autoscaling_desired_capacity = 1
 
 # The deployment bucket name needs to be unique and can only contain lower case
 # letters and dashes (no underscored allowed).
-deployment_bucket_name              = "pixorama-deployment-5800585"
-public_storage_bucket_name          = "pixorama-public-storage-5800585"
-private_storage_bucket_name         = "pixorama-private-storage-5800585"
-public_storage_bucket_name_staging  = "pixorama-public-storage-staging-5800585"
-private_storage_bucket_name_staging = "pixorama-private-storage-staging-5800585"
+deployment_bucket_name      = "pixorama-deployment-564135"
+public_storage_bucket_name  = "pixorama-public-storage-564135"
+private_storage_bucket_name = "pixorama-private-storage-564135"

@@ -39,4 +39,3 @@ redis:
   enabled: false
   host: localhost
   port: 8091
-  
