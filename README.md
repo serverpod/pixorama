@@ -51,7 +51,7 @@ Flutter will open Chrome and start the Pixorama app.
 
 <img width="1312" alt="image" src="https://user-images.githubusercontent.com/611808/222937342-e9d01f59-f73a-49d3-992b-c8d7560b08a1.png">
 
-Select a color from the pallete on the right side, then click on a location in the square to the left. The pixel color should change. Open several chrome tabs with the same url as that opened by the flutter debugger. Changing a pixel in one window should update all the other the images in the other browser windows, as shown below.
+Select a color from the pallete on the right side, then click on a location in the pixel canvas to the left. The pixel color should change. Open several chrome windows with the same url as that opened by the flutter debugger. Changing a pixel in one window should update all the other the images in the other browser windows, as shown below.
 
 <img width="1629" alt="image" src="https://user-images.githubusercontent.com/611808/222937680-00118904-5d11-42f9-b6d6-58d32f4e2c2a.png">
 
