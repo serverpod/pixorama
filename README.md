@@ -45,7 +45,7 @@ dart bin/main.dart
 In another window, go to pixorama_flutter and then type:
 
 ```bash
-flutter run -d Chrome
+flutter run -d chrome
 ```
 Flutter will open Chrome and start the Pixorama app.  
 
