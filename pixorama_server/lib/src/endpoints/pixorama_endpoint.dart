@@ -147,14 +147,12 @@ class PixoramaEndpoint extends Endpoint {
       // will be ignored and an error will be logged. Another approach to handle
       // invalid data can be to close the streaming session and disconnect the
       // client.
-      assert(
-        message.colorIndex >= 0 && message.colorIndex < _numColorsInPalette,
-        'The received color index is not in a valid range.',
-      );
-      assert(
-        message.pixelIndex >= 0 && message.pixelIndex < _pixelData.length,
-        'The received pixel index is not in a valid range.',
-      );
+      if (!(message.colorIndex >= 0 && message.colorIndex < _numColorsInPalette)) {
+        throw FormatException('The received color index is not in a valid range.');
+      }
+      if (!(message.pixelIndex >= 0 && message.pixelIndex < _pixelData.length)) {
+        throw FormatException('The received pixel index is not in a valid range.');
+      }
 
       // Update our global image.
       _setPixel(message.colorIndex, message.pixelIndex);
