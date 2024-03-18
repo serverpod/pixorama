@@ -62,11 +62,11 @@ class PixoramaEndpoint extends Endpoint {
     // manually create a new session. If you create a session, you are also
     // responsible to close it when you are done, or it could lead to memory
     // leaks within your server.
-    var session = await Serverpod.instance!.createSession(enableLogging: true);
+    var session = await Serverpod.instance.createSession(enableLogging: true);
     try {
       // Fetch the image data that we want to update. If there is no data in the
       // database already, we create a new row for the image data.
-      var imageData = await ImageData.findSingleRow(session);
+      var imageData = await ImageData.db.findFirstRow(session);
       if (imageData == null) {
         // Create a new ImageData row in the database.
         imageData = ImageData(
@@ -74,11 +74,11 @@ class PixoramaEndpoint extends Endpoint {
           width: _imageWidth,
           height: _imageHeight,
         );
-        await ImageData.insert(session, imageData);
+        await ImageData.db.insertRow(session, imageData);
       } else {
         // Update the existing entry.
         imageData.pixels = _pixelData.buffer.asByteData();
-        await ImageData.update(session, imageData);
+        await ImageData.db.updateRow(session, imageData);
       }
     } catch (e, stackTrace) {
       // If we finish with an error, we should close the session with the error
@@ -92,10 +92,10 @@ class PixoramaEndpoint extends Endpoint {
 
   /// Loads the pixel image from the database.
   static Future<void> loadImageFromDatabase() async {
-    var session = await Serverpod.instance!.createSession(enableLogging: true);
+    var session = await Serverpod.instance.createSession(enableLogging: true);
     try {
       // Load the image data, if it exists.
-      var imageData = await ImageData.findSingleRow(session);
+      var imageData = await ImageData.db.findFirstRow(session);
       if (imageData != null) {
         _pixelData = imageData.pixels.buffer.asUint8List();
       }
@@ -143,18 +143,16 @@ class PixoramaEndpoint extends Endpoint {
     SerializableEntity message,
   ) async {
     if (message is ImageUpdate) {
-      // Check that the message data is valid. If the assert fails, the message
-      // will be ignored and an error will be logged. Another approach to handle
-      // invalid data can be to close the streaming session and disconnect the
-      // client.
-      assert(
-        message.colorIndex >= 0 && message.colorIndex < _numColorsInPalette,
-        'The received color index is not in a valid range.',
-      );
-      assert(
-        message.pixelIndex >= 0 && message.pixelIndex < _pixelData.length,
-        'The received pixel index is not in a valid range.',
-      );
+      // Check that the message data is valid. If it's not valid, throw an exception
+      // and the message will be ignored and an error will be logged. Another
+      // approach to handle invalid data can be to close the streaming session and
+      // disconnect the client.
+      if (!(message.colorIndex >= 0 && message.colorIndex < _numColorsInPalette)) {
+        throw FormatException('The received color index is not in a valid range.');
+      }
+      if (!(message.pixelIndex >= 0 && message.pixelIndex < _pixelData.length)) {
+        throw FormatException('The received pixel index is not in a valid range.');
+      }
 
       // Update our global image.
       _setPixel(message.colorIndex, message.pixelIndex);

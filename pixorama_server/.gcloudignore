@@ -7,7 +7,3 @@ build/
 
 # Directory created by dartdoc
 doc/api/
-
-# Passwords file
-# This password file is needed to run the server locally
-# config/passwords.yaml

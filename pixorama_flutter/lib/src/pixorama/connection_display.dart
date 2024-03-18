@@ -30,8 +30,7 @@ class ConnectionDisplay extends StatelessWidget {
         connectionStateColor = Colors.red;
         break;
       case StreamingConnectionStatus.waitingToRetry:
-        connectionStateDescription =
-            'Retrying in ${connectionState.retryInSeconds} seconds';
+        connectionStateDescription = 'Retrying in ${connectionState.retryInSeconds} seconds';
         connectionStateColor = Colors.orange[800]!;
         break;
     }
