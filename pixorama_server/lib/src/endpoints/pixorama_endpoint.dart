@@ -143,10 +143,10 @@ class PixoramaEndpoint extends Endpoint {
     SerializableEntity message,
   ) async {
     if (message is ImageUpdate) {
-      // Check that the message data is valid. If the assert fails, the message
-      // will be ignored and an error will be logged. Another approach to handle
-      // invalid data can be to close the streaming session and disconnect the
-      // client.
+      // Check that the message data is valid. If it's not valid, throw an exception
+      // and the message will be ignored and an error will be logged. Another
+      // approach to handle invalid data can be to close the streaming session and
+      // disconnect the client.
       if (!(message.colorIndex >= 0 && message.colorIndex < _numColorsInPalette)) {
         throw FormatException('The received color index is not in a valid range.');
       }
