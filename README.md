@@ -6,6 +6,8 @@ try it out at [https://pixorama.live](https://pixorama.live).
 For the full tutorial visit
 [https://docs.serverpod.dev](https://docs.serverpod.dev/tutorials/real-time-communication).
 
+![Pixorama screenshot](https://docs.serverpod.dev/assets/images/pixorama-183dc43ee2a7c5cec50ac9da4ee25e1d.png)
+
 ## Server code
 On the server side there are three main files that makes Pixorama tick. Two
 serializable models, found in the [models](pixorama_server/lib/src/models)
