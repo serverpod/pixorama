@@ -1,11 +1,11 @@
 {
-    "name": "Pixorama",
-    "short_name": "Pixorama",
+    "name": "pixorama_flutter",
+    "short_name": "pixorama_flutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "Collaborative pixel drawing demo app for Serverpod.",
+    "description": "A new Flutter project.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

@@ -1,0 +1,6 @@
+class: ImageData
+fields:
+  pixels: ByteData
+  width: int
+  height: int
+
